@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #e0e5ec;
+    --foreground: #2d3436;
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --card-border: rgba(255, 255, 255, 0.7);
+  }
+
+  .dark {
+    --background: #1a1c23;
+    --foreground: #dfe6e9;
+    --card-bg: rgba(30, 32, 40, 0.6);
+    --card-border: rgba(255, 255, 255, 0.05);
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 antialiased selection:bg-accent selection:text-white font-sans;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-card border border-card-border backdrop-blur-xl rounded-2xl shadow-glass transition-all duration-300;
+  }
+
+  .neumorphic {
+    @apply bg-background rounded-2xl transition-all duration-300;
+    box-shadow: var(--tw-shadow);
+  }
+
+  .neumorphic-active {
+    @apply bg-background rounded-2xl transition-all duration-200;
+    box-shadow: var(--tw-shadow);
+  }
+  
+  /* Helper mapping for shadow mode toggle */
+  .neu-shadow {
+    box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.6);
+  }
+  .dark .neu-shadow {
+    box-shadow: 7px 7px 15px rgba(0,0,0,0.5), -7px -7px 15px rgba(67, 72, 85, 0.3);
+  }
+
+  .neu-inner {
+    box-shadow: inset 6px 6px 10px 0 rgba(163,177,198, 0.5), inset -6px -6px 10px 0 rgba(255,255,255, 0.6);
+  }
+  .dark .neu-inner {
+    box-shadow: inset 5px 5px 10px rgba(0,0,0,0.5), inset -5px -5px 10px rgba(67, 72, 85, 0.3);
+  }
+
+  .neu-btn {
+    @apply neu-shadow hover:-translate-y-0.5 hover:text-accent active:neu-inner active:translate-y-0 flex items-center justify-center gap-2 px-4 py-2 font-medium bg-background text-foreground rounded-xl transition-all outline-none;
+  }
+}
